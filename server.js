@@ -5,7 +5,7 @@ const path = require('path');
 
 const app = express();
 const server = https.createServer(app);
-const io = socketIo(server);
+const io = require("socket.io");
 
 app.use(express.static(path.join(__dirname, 'public')));
 
