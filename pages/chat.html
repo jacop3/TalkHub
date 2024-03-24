@@ -205,7 +205,7 @@ function generateUniqueToken() {
         // Exit from research chat
         backButton.addEventListener('click', () => {
             socket.emit('backHomeUser'); // Notify server to disconnect user
-            window.location.href = '/'; // Redirect to home page
+            window.location.href = 'https://jacop3.github.io/TalkHub/index.html'; // Redirect to home page
         });
 
         nextChatButton.addEventListener('click', () => {
