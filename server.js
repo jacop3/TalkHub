@@ -51,13 +51,12 @@ function getChatIdByUserId(userId) {
 // Handle socket connections
 io.on('connection', (socket) => {
 
-
+    console.log("ENTRATO");
     // Add socket to availableSockets list
     availableSockets.push(socket);
 
     // Handle joining chat
     socket.on('join', ({ token }) => {
-        console.log("ENTRATO");
         const userId = socket.id;
         users[userId] = { token };
         
