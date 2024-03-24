@@ -57,6 +57,7 @@ io.on('connection', (socket) => {
 
     // Handle joining chat
     socket.on('join', ({ token }) => {
+        console.log("ENTRATO");
         const userId = socket.id;
         users[userId] = { token };
         
