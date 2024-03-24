@@ -1,0 +1,354 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #F2F2EA;
+        margin: 0px;
+        }
+        .header {
+        background-color: #fff; /* Colore di sfondo */
+        color: black; /* Colore del testo */
+        text-align: left; /* Allineamento del testo al centro */
+        box-shadow: 0px 5px 12px #888888;
+        }
+        img{
+        width: 235px;
+        }
+        h1{
+        margin-top: 45px;
+        float: right;
+        margin-right: 15px;
+        color:#23ACDF;
+        }
+        .corpo{
+            margin-left: 30px;
+            margin-right: 400px;
+            margin-top: 35px;
+            background-color: #fff;
+            height:475px;
+            border-radius: 6px;
+            box-shadow: 0px 0px 10px #888888;
+        }
+        #messages{
+            padding: 15px;
+            overflow-y: auto; /* Aggiunge una barra di scorrimento verticale quando necessario */
+            max-height: 430px; /* Imposta l'altezza massima del div dei messaggi */
+        }
+        p{
+            margin:0px;
+        }
+        #input{
+            margin-top: 15px;
+            margin-left: 30px
+        }
+        button{
+            width: 130px;
+            height: 50px;
+            background-color: #23ACDF;
+            color:#F2F2EA;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            opacity: 1;
+            transition-duration: 0.4s;
+        }
+        button:hover {
+        background-color: #1c8fba;
+        color: white;
+        transition-duration: 0.4s;
+        }
+        input{
+            width: 607px;
+            height:50px;
+        }
+        button:hover {
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #23ACDF;
+            opacity: 0.5; /* Opacità minore per i pulsanti disabilitati */
+        }
+    </style>
+</head>
+<body onbeforeunload="esci(event)">
+    <div class="header">
+        <img id="logo" src="logo.png" alt="Image Not Found">
+        <h1><span id="chatCountValue">0</span>+ Online now! </h1>
+      </div>
+      <div class="corpo">
+        <ul id="messages"></ul>
+      </div>
+      <div id="input">
+        <button id="leave-chat-button" style="display: none;" disabled>Back Home (2)</button>
+        <button id="disconnect-button" style="display: none;" disabled>Disconnect (esc)</button>
+        <button id="disconnect-button2" style="display: none;" disabled>Sure? (esc)</button>
+        <button id="backhome-button" >Back Home</button>
+        <input id="message-input" type="text" disabled>
+        <button id="send-button" disabled>Send (enter)</button>
+        <button id="next-chat-button" style="display: none;" disabled>Next Chat (1)</button>
+        </div> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const socket = io();
+        const messageList = document.getElementById('messages');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+        const backButton = document.getElementById('backhome-button');
+        const disconnectButton = document.getElementById('disconnect-button');
+        const disconnectButton2 = document.getElementById('disconnect-button2');
+        const nextChatButton = document.getElementById('next-chat-button');
+        const leaveChatButton = document.getElementById('leave-chat-button');
+
+        let disconnected = false;
+        
+        const token = generateUniqueToken();
+        
+        history.replaceState({}, document.title, "/");
+
+        socket.emit('join', { token });
+
+    // Aggiungi un gestore degli eventi per il tasto "Invio" sull'input del messaggio
+    messageInput.addEventListener('keypress', function(event) {
+        // Verifica se il tasto premuto è il tasto "Invio" (codice 13)
+        if (event.key === 'Enter') {
+            // Previeni il comportamento predefinito (ad esempio, l'invio di un modulo)
+            event.preventDefault();
+            // Simula il click sul pulsante di invio
+            sendButton.click();
+        }
+    });
+
+    // Aggiungi un gestore degli eventi per il tasto "Invio" sull'input del messaggio
+    document.addEventListener('keydown', function(event) {
+        // Verifica se il tasto premuto è il tasto "Invio" (codice 13)
+        if (event.key === 'Escape') {
+            // Simula il click sul pulsante di disconnessione
+            disconnectButton2.click();
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        // Verifica se il tasto premuto è il tasto "Invio" (codice 13)
+        if (event.key === 'Escape') {
+            // Simula il click sul pulsante di disconnessione
+            disconnectButton.click();
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        // Verifica se il tasto premuto è il tasto "Invio" (codice 13)
+        if (event.key === '1') {
+            // Simula il click sul pulsante di disconnessione
+            nextChatButton.click();
+        }
+    });
+    document.addEventListener('keydown', function(event) {
+        // Verifica se il tasto premuto è il tasto "Invio" (codice 13)
+        if (event.key === '2') {
+            // Simula il click sul pulsante di disconnessione
+            leaveChatButton.click();
+        }
+    });
+
+        $.get('/chatcount', function(data) {
+                // Aggiorna il valore nel DOM
+                $('#chatCountValue').text(data.chatCount);
+            });
+        // Funzione per generare un token univoco
+function generateUniqueToken() {
+  // Lunghezza del token desiderata
+  const tokenLength = 16;
+
+  // Caratteri consentiti per il token
+  const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+  let token = '';
+  for (let i = 0; i < tokenLength; i++) {
+    // Genera un indice casuale all'interno dell'intervallo dei caratteri consentiti
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    
+    // Aggiunge il carattere corrispondente all'indice casuale al token
+    token += characters.charAt(randomIndex);
+  }
+
+  return token;
+}
+
+        // Send a message
+        sendButton.addEventListener('click', () => {
+            const message = messageInput.value.trim();
+            if (!disconnected && message !== '') {
+                socket.emit('message', message);
+                messageInput.value = '';
+            }
+        });
+
+        // Disconnect from chat
+        disconnectButton.addEventListener('click', () => {
+            disconnectButton.disabled=true;
+            disconnectButton.style.display = 'none';
+            disconnectButton2.disabled=false;
+            disconnectButton2.style.display = 'inline-block';
+        });
+        // Disconnect from chat
+        disconnectButton2.addEventListener('click', () => {
+            disconnectButton2.disabled=true;
+            disconnectButton2.style.display = 'none';
+            socket.emit('disconnectUser'); // Notify server to disconnect user
+        });
+
+        // Exit from research chat
+        backButton.addEventListener('click', () => {
+            socket.emit('backHomeUser'); // Notify server to disconnect user
+            window.location.href = '/'; // Redirect to home page
+        });
+
+        nextChatButton.addEventListener('click', () => {
+            window.location.href = 'chat.html'; // Reload the page to start a new chat
+        });
+
+        // Leave chat and go to home page
+        leaveChatButton.addEventListener('click', () => {
+            window.location.href = '/'; // Redirect to home page
+        });
+
+        // Add received message to chat
+        function addMessage(message) {
+            const p = document.createElement('p');
+
+    // Dividi il testo del messaggio in parti basate sullo spazio
+    const parts = message.split(' ');
+
+    // Crea un elemento span per ogni parte del messaggio e applica gli stili solo alla parte contenente 'You' o 'Stranger'
+    parts.forEach(part => {
+        const span = document.createElement('span');
+        span.textContent = part + ' ';
+
+        // Applica lo stile appropriato alla parte del messaggio contenente 'You' o 'Stranger'
+        if (part.includes('You:')) {
+            span.style.color = 'blue';
+            span.style.fontWeight = 'bold';
+        } else if (part.includes('Stranger:')) {
+            span.style.color = 'red';
+            span.style.fontWeight = 'bold';
+        }
+
+        p.appendChild(span);
+        messageList.scrollTop = messageList.scrollHeight; // Scrolla in basso
+    });
+
+    messageList.appendChild(p);
+        }
+        // Add Start Chat message to chat
+        function addStartMessage(message) {
+            const br = document.createElement('br');
+            const b = document.createElement('b');
+            b.textContent = message;
+            messageList.appendChild(b);
+            messageList.appendChild(br);
+        }
+
+         // Add Start Chat message to chat
+         function addWaitMessage(message) {
+            const br = document.createElement('br');
+            const b = document.createElement('b');
+            b.textContent = message;
+            messageList.appendChild(b);
+            messageList.appendChild(br);
+        }
+
+        function addLeaveMessage(message) {
+            const b = document.createElement('b');
+            b.textContent = message;
+            messageList.appendChild(b);
+            messageList.scrollTop = messageList.scrollHeight; // Scrolla in basso
+        }
+
+
+        // Receive message from server
+        socket.on('message', (message) => {
+            if(message == '*_EXIT_ALL_*')
+            {
+                messageInput.disabled = true;
+                sendButton.disabled = true;
+                disconnectButton.disabled = true;
+                disconnectButton.style.display = 'none';
+                disconnectButton2.disabled = true;
+                disconnectButton2.style.display = 'none';
+                nextChatButton.style.display = 'inline-block';
+                leaveChatButton.style.display = 'inline-block';
+                disconnected = true;
+            }
+            else addMessage(message);
+        });
+
+        socket.on('LeaveMessage', (message) => {
+            addLeaveMessage(message);
+            nextChatButton.disabled=false;
+            leaveChatButton.disabled=false;
+        });
+
+        // Handle chat start event
+        socket.on('chatStart', (message) => {
+            addStartMessage(message); // Display chat start message
+            // Enable message input and send button
+            nextChatButton.disabled=true;
+            leaveChatButton.disabled=true;
+            messageInput.disabled = false;
+            sendButton.disabled = false;
+            disconnectButton.disabled = false;
+            backButton.style.display = 'none';
+            disconnectButton.style.display = 'inline-block';
+            disconnectButton2.disabled = true;
+            disconnectButton2.style.display = 'none';
+            disconnected = false;
+        });
+
+        // Handle waiting event
+        socket.on('waiting', (message) => {
+            addWaitMessage(message); // Display waiting message
+            // Disable message input and send button for both users
+            nextChatButton.disabled=true;
+            leaveChatButton.disabled=true;
+            messageInput.disabled = true;
+            sendButton.disabled = true;
+            backButton.disables = false;
+            disconnectButton.disabled = true;
+            disconnectButton.style.display = 'none';
+            disconnectButton2.disabled = true;
+            disconnectButton2.style.display = 'none';
+            disconnected = true;
+        });
+
+        // Handle disconnect confirmation from server
+        socket.on('disconnectConfirmed', () => {
+            nextChatButton.disabled=false;
+            nextChatButton.style.display = 'inline-block';
+            leaveChatButton.disabled=false;
+            leaveChatButton.style.display = 'inline-block';
+            // Disable message input and send button for both users
+            messageInput.disabled = true;
+            sendButton.disabled = true;
+            backButton.disables = true;
+            disconnectButton.disabled = true;
+            disconnectButton.style.display = 'none';
+            disconnectButton2.disabled = true;
+            disconnectButton2.style.display = 'none';
+            disconnected = true;
+            addLeaveMessage('You left the chat');
+        });
+
+        function esci(event) {  
+              socket.emit('leaveWaitingList');
+              socket.emit('disconnectUser');
+              socket.emit('TogliUser');
+        };  
+
+    </script>
+</body>
+</html>

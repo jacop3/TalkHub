@@ -1,0 +1,119 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="minilogo.png" type="image/png">
+    <title>Talk Hub</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #F2F2EA;
+    margin: 0px;
+    }
+    .header {
+    background-color: #fff; /* Colore di sfondo */
+    color: black; /* Colore del testo */
+    text-align: left; /* Allineamento del testo al centro */
+    box-shadow: 0px 5px 12px #888888;
+    }
+    .box{
+    background-color: #fff; /* Colore di sfondo */
+    color: black; /* Colore del testo */
+    text-align: left; /* Allineamento del testo al centro */
+    box-shadow: 0px 1px 12px #888888;
+    margin-left: 175px;
+    margin-right: 175px;
+    margin-top: 50px;
+    height:450px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    }
+    form{
+        text-align: center;
+    }
+    h1{
+        margin-top: 45px;
+        float: right;
+        margin-right: 15px;
+        color:#23ACDF;
+    }
+    #button {
+        background-color:#23ACDF; /* Cambia la sfumatura quando si passa sopra */
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin-bottom: 20px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 9px;
+        width: 245px;
+        height: 85px;
+        opacity: 0.7;
+    }
+
+#button:hover {
+  background-color: #23ACDF;
+  color: white;
+  opacity: 1;
+}
+img{
+    width: 235px;
+}
+p{
+    margin:0;
+    padding: 25px;
+}
+#text2{
+    text-align: center;   
+    padding: 15px;
+    margin-top: 75px;
+    font-size: 10px;
+    color: gray;
+}
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img id="logo" src="logo.png" alt="Image Not Found">
+        <h1><span id="chatCountValue">0</span>+ Online now! </h1>
+      </div>
+    <div class="box">
+        <p>Hey user!<br>
+            I created this site with a spirit of challenge towards myself, and I hope that you can enjoy it with the most desirable good intentions.<br><br> We know well what happened to many of these sites where strangers from different parts of the world communicated, sometimes creating wonderful stories (including me since I was a user), but also terrible realities that we have to deal with day by day.<br><br>
+            Be as kind as possible to the stranger that comes your way, and strangers be kind to the users you talk to.<br><br>
+            None of your data will be visible and traceable, it's just you and the stranger, and maybe a story to tell!</p>
+        <p id="text2"><b>To start chatting you must be at least 18+ or 14+ under adult supervision!</bb></p>
+    <form id="user-form">
+        <button type="submit" id="button">Start Chatting!</button>
+    </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+ 
+            // Fai una richiesta AJAX per ottenere il valore della variabile Chatcount
+            $.get('/chatcount', function(data) {
+                // Aggiorna il valore nel DOM
+                $('#chatCountValue').text(data.chatCount);
+            });
+        
+        
+        document.getElementById('user-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            // Redirect to chat page with query parameters
+            window.location.href = `/chat.html`;
+        });
+
+        document.getElementById('logo').addEventListener('click', function() {
+            window.location.href = "/";
+        });
+
+    </script>
+</body>
+</html>
