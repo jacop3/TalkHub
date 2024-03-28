@@ -55,7 +55,7 @@ function getChatIdByUserId(userId) {
 }
 
 // Handle socket connections
-socketIo.on('connection', (socket) => {
+io.on('connection', (socket) => {
 
     // Add socket to availableSockets list
     availableSockets.push(socket);
