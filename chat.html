@@ -401,7 +401,12 @@ function generateUniqueToken() {
               window.location.href = '/';
         };  
 
-        
+        window.addEventListener('pagehide', function(event) {
+              socket.emit('leaveWaitingList');
+              socket.emit('disconnectUser');
+              socket.emit('TogliUser');
+              window.location.href = '/';
+        });
 
     </script>
 </body>
