@@ -21,11 +21,8 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
-  const server = createServer(app);
-  const io = new Server(server, {
-    connectionStateRecovery: {},
-    adapter: createAdapter()
-  });
+var server   = require('http').Server(app);
+var io       = require('socket.io')(server);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
