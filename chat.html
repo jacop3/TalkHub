@@ -398,14 +398,14 @@ function generateUniqueToken() {
               socket.emit('leaveWaitingList');
               socket.emit('disconnectUser');
               socket.emit('TogliUser');
-              window.location.href = '/talkhub';
+              window.location.href = '/';
         };  
 
         window.addEventListener('pageshow', function(event) {
               socket.emit('leaveWaitingList');
               socket.emit('disconnectUser');
               socket.emit('TogliUser');
-              window.location.href = '/talkhub';
+              window.location.href = '/';
         });
 
     </script>
