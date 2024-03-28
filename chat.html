@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" href="minilogo.png" type="image/png">
     <title>Chat</title>
     <style>
@@ -73,6 +73,11 @@
             background-color: #23ACDF;
             opacity: 0.5; /* Opacità minore per i pulsanti disabilitati */
         }
+        input[type="text"], textarea {
+        font-size: 16px; /* o la dimensione desiderata per il testo */
+        width: 100%;
+        max-width: 100%;
+    }
     @media (max-width: 390px) {
         .header {
         background-color: #fff; /* Colore di sfondo */
