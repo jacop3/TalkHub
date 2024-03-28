@@ -401,6 +401,13 @@ function generateUniqueToken() {
               window.location.href = '/talkhub';
         };  
 
+        window.addEventListener('pageshow', function(event) {
+              socket.emit('leaveWaitingList');
+              socket.emit('disconnectUser');
+              socket.emit('TogliUser');
+              window.location.href = '/talkhub';
+        });
+
     </script>
 </body>
 </html>
