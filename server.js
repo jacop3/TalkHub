@@ -13,12 +13,14 @@ const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const path = require('path');
+const cors = require('cors');
 
 //const app = express();
 //const server = http.createServer(app);
 //const io = socketIo(server);
 
 const app = express();
+app.use(cors());
   const server = createServer(app);
   const io = new Server(server, {
     connectionStateRecovery: {},
