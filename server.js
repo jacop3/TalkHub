@@ -1,5 +1,5 @@
 const express = require('express');
-const https = require('https');
+const http = require('http');
 const socketIo = require('socket.io');
 const path = require('path');
 const cors = require('cors');
@@ -10,7 +10,7 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
-var server = require('https').Server(app);
+var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 app.use(express.static(path.join(__dirname, 'public')));
