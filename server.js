@@ -69,7 +69,7 @@ function getChatIdByUserId(userId) {
 }
 
 // Handle socket connections
-io.on('connection', (socket) => {
+//io.on('connection', (socket) => {
 
     // Add socket to availableSockets list
     availableSockets.push(socket);
@@ -194,7 +194,7 @@ io.on('connection', (socket) => {
     delete users[userId];
     });
 
-});
+//});
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
