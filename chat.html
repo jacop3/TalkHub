@@ -274,8 +274,8 @@ function generateUniqueToken() {
         });
 
         // Add received message to chat
-        function addMessage(message) {
-            const p = document.createElement('p');
+function addMessage(message) {
+    const p = document.createElement('p');
 
     // Dividi il testo del messaggio in parti basate sullo spazio
     const parts = message.split(' ');
@@ -299,7 +299,12 @@ function generateUniqueToken() {
     });
 
     messageList.appendChild(p);
-        }
+
+    disconnectButton.disabled=false;
+    disconnectButton.style.display = 'inline-block';
+    disconnectButton2.disabled=true;
+    disconnectButton2.style.display = 'none';
+}
         // Add Start Chat message to chat
         function addStartMessage(message) {
             const br = document.createElement('br');
