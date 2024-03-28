@@ -205,11 +205,11 @@ function generateUniqueToken() {
         // Exit from research chat
         backButton.addEventListener('click', () => {
             socket.emit('backHomeUser'); // Notify server to disconnect user
-            window.location.href = 'https://jacop3.github.io/talkhub/index.html'; // Redirect to home page
+            window.location.href = '/chat.html'; // Redirect to home page
         });
 
         nextChatButton.addEventListener('click', () => {
-            window.location.href = 'chat.html'; // Reload the page to start a new chat
+            window.location.href = '/chat.html'; // Reload the page to start a new chat
         });
 
         // Leave chat and go to home page
