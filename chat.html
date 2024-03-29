@@ -42,9 +42,11 @@
         p{
             margin:0px;
         }
-        #input{
-            margin-top: 15px;
-            margin-left: 30px
+        #input {
+        align-items: center;
+        margin-top: 15px;
+        margin-left: 25px;
+        display: flex;
         }
         button{
             width: 105px;
@@ -56,6 +58,8 @@
             font-size: 15px;
             opacity: 1;
             transition-duration: 0.4s;
+            padding: 10px 5px;
+            margin: 0 5px;
         }
         button:hover {
         background-color: #1c8fba;
@@ -77,55 +81,237 @@
         font-size: 16px; /* o la dimensione desiderata per il testo */
         width: 56%;
         max-width: 100%;
+        }
+        p {
+        margin: 0px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        }
+    @media (min-width: 250px) and (max-width: 320px)
+    {
+        img {
+        width: 150px;
+        }
+        input {
+        width: 607px;
+        height: 47px;
+        }
+        input[type="text"], textarea {
+        font-size: 16px; /* o la dimensione desiderata per il testo */
+        width: 43%;
+        max-width: 100%;
+        }
+        h1 {
+        margin-top: 31px;
+        float: right;
+        margin-right: 15px;
+        color: #23ACDF;
+        font-size: 17px;
+        }
+        .corpo {
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 35px;
+        background-color: #fff;
+        height: 435px;
+        border-radius: 6px;
+        box-shadow: 0px 0px 10px #888888;
+        }
+        button {
+        width: 62px;
+        height: 47px;
+        background-color: #23ACDF;
+        color: #F2F2EA;
+        border: none;
+        border-radius: 5px;
+        font-size: 8px;
+        opacity: 1;
+        transition-duration: 0.4s;
+        padding: 10px 10px;
+        margin: 0 5px;
+        }
+        #input {
+        align-items: center;
+        margin-top: 10px;
+        margin-left: 25px;
+        display: flex;
+        }
+        #messages {
+        padding: 15px;
+        overflow-y: auto;
+        max-height: 405px;
+        font-size: 13px;
+        }
     }
-    @media (max-width: 390px) {
-        .header {
-        background-color: #fff; /* Colore di sfondo */
-        color: black; /* Colore del testo */
-        text-align: left; /* Allineamento del testo al centro */
-        box-shadow: 0px 5px 12px #888888;
-        width: 390px;
+
+    @media (min-width: 321px) and (max-width: 375px)
+    {
+        img {
+        width: 150px;
         }
-        #logo{
-        width: 135px;
+        input {
+        width: 607px;
+        height: 47px;
         }
-        h1{
-            margin-top: 22px;
-            float: right;
-            margin-right: 15px;
-            color: #23ACDF;
-            font-size: 25px;
+        input[type="text"], textarea {
+        font-size: 16px; /* o la dimensione desiderata per il testo */
+        width: 52%;
+        max-width: 100%;
         }
-        #text2{
-            text-align: center;   
-            padding: 15px;
-            margin-top: 25px;
-            font-size: 8px;
-            color: gray;
+        h1 {
+        margin-top: 31px;
+        float: right;
+        margin-right: 15px;
+        color: #23ACDF;
+        font-size: 17px;
         }
-        .corpo{
-            margin-left: 30px;
-            margin-right: 30px;
-            margin-top: 35px;
-            background-color: #fff;
-            height:615px;
-            border-radius: 6px;
-            box-shadow: 0px 0px 10px #888888;
+        .corpo {
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 35px;
+        background-color: #fff;
+        height: 435px;
+        border-radius: 6px;
+        box-shadow: 0px 0px 10px #888888;
         }
-        input{
-            width: 180px;
-            height:50px;
+        button {
+        width: 62px;
+        height: 47px;
+        background-color: #23ACDF;
+        color: #F2F2EA;
+        border: none;
+        border-radius: 5px;
+        font-size: 9px;
+        opacity: 1;
+        transition-duration: 0.4s;
+        padding: 10px 10px;
+        margin: 0 5px;
         }
-        button{
-            width: 70px;
-            height: 50px;
-            background-color: #23ACDF;
-            color:#F2F2EA;
-            border: none;
-            border-radius: 5px;
-            font-size: 15px;
-            opacity: 1;
-            transition-duration: 0.4s;
+        #input {
+        align-items: center;
+        margin-top: 10px;
+        margin-left: 25px;
+        display: flex;
+        }
+        #messages {
+        padding: 15px;
+        overflow-y: auto;
+        max-height: 405px;
+        font-size: 15px;
+        }
+    }
+
+    @media (min-width: 376px) and (max-width: 425px)
+    {
+        img {
+        width: 150px;
+        }
+        input {
+        width: 607px;
+        height: 47px;
+        }
+        input[type="text"], textarea {
+        font-size: 16px; /* o la dimensione desiderata per il testo */
+        width: 58%;
+        max-width: 100%;
+        }
+        h1 {
+        margin-top: 30px;
+        float: right;
+        margin-right: 15px;
+        color: #23ACDF;
+        font-size: 20px;
+        }
+        .corpo {
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 35px;
+        background-color: #fff;
+        height: 435px;
+        border-radius: 6px;
+        box-shadow: 0px 0px 10px #888888;
+        }
+        button {
+        width: 62px;
+        height: 47px;
+        background-color: #23ACDF;
+        color: #F2F2EA;
+        border: none;
+        border-radius: 5px;
+        font-size: 10px;
+        opacity: 1;
+        transition-duration: 0.4s;
+        padding: 10px 5px;
+        margin: 0 5px;
+        }
+        #input {
+        align-items: center;
+        margin-top: 10px;
+        margin-left: 25px;
+        display: flex;
+        }
+        #messages {
+        padding: 15px;
+        overflow-y: auto;
+        max-height: 405px;
+        font-size: 15px;
+        }
+    }
+
+    @media (min-width: 425px) and (max-width: 768px)
+    {
+        img {
+        width: 150px;
+        }
+        input {
+        width: 607px;
+        height: 47px;
+        }
+        input[type="text"], textarea {
+        font-size: 16px; /* o la dimensione desiderata per il testo */
+        width: 72%;
+        max-width: 100%;
+        }
+        h1 {
+        margin-top: 30px;
+        float: right;
+        margin-right: 15px;
+        color: #23ACDF;
+        font-size: 20px;
+        }
+        .corpo {
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 35px;
+        background-color: #fff;
+        height: 435px;
+        border-radius: 6px;
+        box-shadow: 0px 0px 10px #888888;
+        }
+        button {
+        width: 80px;
+        height: 47px;
+        background-color: #23ACDF;
+        color: #F2F2EA;
+        border: none;
+        border-radius: 5px;
+        font-size: 11px;
+        opacity: 1;
+        transition-duration: 0.4s;
+        padding: 10px 5px;
+        margin: 0 5px;
+        }
+        #input {
+        align-items: center;
+        margin-top: 10px;
+        margin-left: 25px;
+        display: flex;
+        }
+        #messages {
+        padding: 15px;
+        overflow-y: auto;
+        max-height: 405px;
+        font-size: 15px;
         }
     }
     </style>
@@ -150,7 +336,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        const socket = io.connect('https://talkhub-hjdb.onrender.com:443');
+        const socket = io.connect('localhost:3000');
         const messageList = document.getElementById('messages');
         const messageInput = document.getElementById('message-input');
         const sendButton = document.getElementById('send-button');
@@ -235,6 +421,11 @@ function generateUniqueToken() {
   return token;
 }
 
+function scrollToBottom() {
+    var chatContainer = $('#messages');
+    chatContainer.scrollTop(chatContainer[0].scrollHeight);
+}
+
         // Send a message
         sendButton.addEventListener('click', () => {
             const message = messageInput.value.trim();
@@ -304,6 +495,8 @@ function addMessage(message) {
     disconnectButton.style.display = 'inline-block';
     disconnectButton2.disabled=true;
     disconnectButton2.style.display = 'none';
+
+    scrollToBottom();
 }
         // Add Start Chat message to chat
         function addStartMessage(message) {
@@ -336,6 +529,7 @@ function addMessage(message) {
             if(message == '*_EXIT_ALL_*')
             {
                 messageInput.disabled = true;
+                sendButton.style.display = 'none';
                 sendButton.disabled = true;
                 disconnectButton.disabled = true;
                 disconnectButton.style.display = 'none';
@@ -352,6 +546,8 @@ function addMessage(message) {
             addLeaveMessage(message);
             nextChatButton.disabled=false;
             leaveChatButton.disabled=false;
+            sendButton.style.display = 'none';
+            sendButton.disabled = true;
         });
 
         // Handle chat start event
@@ -377,6 +573,7 @@ function addMessage(message) {
             nextChatButton.disabled=true;
             leaveChatButton.disabled=true;
             messageInput.disabled = true;
+            sendButton.style.display = 'inline-block';
             sendButton.disabled = true;
             backButton.disables = false;
             disconnectButton.disabled = true;
@@ -390,6 +587,8 @@ function addMessage(message) {
         socket.on('disconnectConfirmed', () => {
             nextChatButton.disabled=false;
             nextChatButton.style.display = 'inline-block';
+            sendButton.style.display = 'none';
+            sendButton.disabled = true;
             leaveChatButton.disabled=false;
             leaveChatButton.style.display = 'inline-block';
             // Disable message input and send button for both users
